@@ -2,7 +2,7 @@
 
 > A Vue.js project
 
-<img width="800"src="https://github.com/Garens/vue-map/blob/master/src/assets/index.png">
+<img width="800" src="https://github.com/Garens/vue-map/blob/master/src/assets/index.png">
 
 ## Build Setup
 
