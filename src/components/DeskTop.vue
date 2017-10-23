@@ -54,20 +54,29 @@ export default {
         // date: new Date().toLocaleDateString(),
         // time: new Date().toLocaleTimeString()
       },
-      mainMapStyle: {
-        width: document.documentElement.clientWidth + "px",
-        height: document.documentElement.clientHeight - 38 + "px"
-      },
-      mainContStyle: {
-        width: document.documentElement.clientWidth + "px",
-        height: document.documentElement.clientHeight + "px"
-      }
+      mainMapStyle: {},
+      mainContStyle: {}
     };
   },
   mounted() {
     this.setDesktopTime();
+    this.setWindowSize();
+    window.onresize = () => {
+      return this.setWindowSize();
+    }
   },
   methods: {
+    //设置地图层div的宽度高度
+    setWindowSize: function() {
+      this.mainContStyle = {
+        width: document.documentElement.clientWidth + "px",
+        height: document.documentElement.clientHeight + "px"
+      };
+      this.mainMapStyle = {
+        width: document.documentElement.clientWidth + "px",
+        height: document.documentElement.clientHeight - 38 + "px"
+      }
+    },
     //点击其他地方，隐藏开始菜单
     hideMenu: function() {
       this.isShowMenu = false;

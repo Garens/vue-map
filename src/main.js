@@ -8,6 +8,8 @@ import 'iview/dist/styles/iview.css'
 
 Vue.config.productionTip = false
 
+import layer from 'vue-layer'
+Vue.prototype.$layer = layer(Vue);
 
 Vue.use(iView);
 

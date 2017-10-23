@@ -26,16 +26,23 @@
 </template>
 
 <script>
+import test1 from "./sys1/Index.vue";
+import test2 from "./sys2/Index.vue";
+
 export default {
   props: [],
+  components: {
+    test1,
+    test2
+  },
   data() {
     return {
       value1: 0,
       menuList: [
-        { icon: "settings", title: "系统菜单1", color: "#cb5a5e", page: "test1" },
-        { icon: "filing", title: "系统菜单2", color: "#30962d", page: "test2" },
-        { icon: "clipboard", title: "系统菜单3", color: "#ca8319", page: "test1" },
-        { icon: "pie-graph", title: "系统菜单4", color: "#ed3f14", page: "test2" },
+        { icon: "settings", title: "系统菜单1", color: "#cb5a5e", page: test1 },
+        { icon: "filing", title: "系统菜单2", color: "#30962d", page: test2 },
+        { icon: "clipboard", title: "系统菜单3", color: "#ca8319", page: test1 },
+        { icon: "pie-graph", title: "系统菜单4", color: "#ed3f14", page: test2 },
         {
           icon: "social-buffer",
           title: "系统菜单5",
@@ -102,6 +109,16 @@ export default {
     //点击一个菜单项事件
     startMenuItem: function(page) {
       console.log(page);
+      // this.$layer.alert(page);
+      this.$layer.iframe({
+        content: {
+          content: page, //传递的组件对象
+          parent: this, //当前的vue对象
+          data: [] //props
+        },
+        area: ["800px", "600px"],
+        title: "editForm"
+      });
     }
   }
 };
