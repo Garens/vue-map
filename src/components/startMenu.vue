@@ -9,7 +9,7 @@
     <div class="menu-cont">
       <Carousel v-model="value1" :trigger="'hover'" :arrow="'never'" class="menu-cont-page">
         <CarouselItem v-for="num in menuList" class="menu-cont-page-item">
-            <div v-for="item in num" class="menu-item" :style="item.color | formatColor" @click="startMenuItem(item.page)">
+            <div v-for="item in num" class="menu-item" :style="item.color | formatColor" @click="startMenuItem(item)">
               <Icon :type="item.icon"></Icon>
               <div class="menu-item-text">
                 <span>{{item.title}}</span>
@@ -39,10 +39,10 @@ export default {
     return {
       value1: 0,
       menuList: [
-        { icon: "settings", title: "系统菜单1", color: "#cb5a5e", page: test1 },
-        { icon: "filing", title: "系统菜单2", color: "#30962d", page: test2 },
-        { icon: "clipboard", title: "系统菜单3", color: "#ca8319", page: test1 },
-        { icon: "pie-graph", title: "系统菜单4", color: "#ed3f14", page: test2 },
+        { id: 'system1', icon: "settings", title: "系统菜单1", color: "#cb5a5e", page: test1 },
+        { id: 'system2', icon: "filing", title: "系统菜单2", color: "#30962d", page: test2 },
+        { id: 'system3', icon: "clipboard", title: "系统菜单3", color: "#ca8319", page: test1 },
+        { id: 'system4', icon: "pie-graph", title: "系统菜单4", color: "#ed3f14", page: test2 },
         {
           icon: "social-buffer",
           title: "系统菜单5",
@@ -107,18 +107,53 @@ export default {
       this.menuList = arr;
     },
     //点击一个菜单项事件
-    startMenuItem: function(page) {
-      console.log(page);
-      // this.$layer.alert(page);
-      this.$layer.iframe({
+    startMenuItem: function(item) {
+      var flag = false;
+      var sysId = '';
+      var list = this.$parent.startMenuList;
+      for(var _item of list) {
+        if(_item.id == item.id) {
+          flag = true;
+          sysId = _item.sysId;
+        }
+      }
+      if(!flag) {
+        this.creatLayer(item);
+      } else {
+        this.$layer.setTop(sysId);
+      }
+      
+      this.$parent.isShowMenu = false;
+    },
+    //创建一个弹出层
+    creatLayer: function(item) {
+      var _this = this;
+      var page = item.page;
+      var width = document.getElementById("main-map").offsetWidth + "px";
+      var height = document.getElementById("main-map").offsetHeight + 5 + "px";
+      var layer = this.$layer.iframe({
         content: {
           content: page, //传递的组件对象
           parent: this, //当前的vue对象
           data: [] //props
         },
-        area: ["800px", "600px"],
-        title: "editForm"
+        area: [width, height],
+        title: item.title,
+        center: false,        //是否显示在窗口正中心
+        shadeClose: false,    //是否允许点击阴影关闭
+        btntool: true,        //是否显示右上角最小化和关闭图标
+        move: false,          //是否允许拖动
+        fullScreen: true,   //全屏显示
+        close: function(id) {
+          var list = _this.$parent.startMenuList;
+          for(var i in list) {
+            if(list[i].sysId == id) {
+              _this.$parent.startMenuList.splice(i, 1);
+            }
+          }
+        }
       });
+      this.$parent.startMenuList.push({id: item.id, sysId: layer, icon: item.icon, color: item.color});
     }
   }
 };

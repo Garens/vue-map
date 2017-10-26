@@ -1,14 +1,14 @@
 <template>
 	<div class="main-cont" :style="mainContStyle">
-		<div class="main-map" @click="hideMenu" :style="mainMapStyle">
+		<div class="main-map" id="main-map" @click="hideMenu" :style="mainMapStyle">
 			<map-view></map-view>
 		</div>
 		<div class="desktop">
 			<Row class="desktop-row">
 				<Col span="20" class="desktop-item" @click.native="hideMenu">
 					<div class="bottom-menu-item">
-						<div class="icon-menu">
-							
+						<div class="icon-menu" v-for="item in startMenuList" @click="changePageShow(item)">
+							<Icon :type="item.icon"></Icon>
 						</div>
 					</div>
 					<div class="copyright">
@@ -55,17 +55,28 @@ export default {
         // time: new Date().toLocaleTimeString()
       },
       mainMapStyle: {},
-      mainContStyle: {}
+      mainContStyle: {},
+      startMenuList: []
     };
   },
+  computed: {},
   mounted() {
     this.setDesktopTime();
     this.setWindowSize();
-    window.onresize = () => {
-      return this.setWindowSize();
-    }
+    window.addEventListener(
+      "resize",
+      () => {
+        this.setWindowSize();
+      },
+      false
+    );
   },
   methods: {
+    //点击切换下面的小图标时候
+    changePageShow: function(item) {
+      let sysId = item.sysId;
+      this.$layer.taggel(sysId);
+    },
     //设置地图层div的宽度高度
     setWindowSize: function() {
       this.mainContStyle = {
@@ -75,7 +86,7 @@ export default {
       this.mainMapStyle = {
         width: document.documentElement.clientWidth + "px",
         height: document.documentElement.clientHeight - 38 + "px"
-      }
+      };
     },
     //点击其他地方，隐藏开始菜单
     hideMenu: function() {
@@ -130,7 +141,7 @@ export default {
 .start:hover {
   background: #0078d7;
 }
-.start:hover .start-icon {  
+.start:hover .start-icon {
   transform: rotateY(330deg);
   color: rgb(228, 147, 20);
 }
@@ -192,7 +203,30 @@ export default {
   animation: bounce-in 0.5s reverse;
 }
 .main-cont {
-	display: block;
-	overflow: hidden;
+  display: block;
+  overflow: hidden;
+}
+.icon-menu {
+  width: 46px;
+  height: 40px;
+  cursor: pointer;
+  float: left;
+  margin: 0 6px;
+  border-bottom: 2px solid #f9c838;
+  transition: all 0.2s ease;
+}
+.icon-menu:hover {
+  width: 50px;
+  margin: 0 4px;
+  background-color: #395371;
+  border-bottom: 2px solid #f9c838;
+}
+.icon-menu:hover i {
+  font-size: 34px;
+}
+.icon-menu i {
+  font-size: 32px;
+  line-height: 40px;
+  color: #e6e6e6;
 }
 </style>
