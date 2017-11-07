@@ -4,6 +4,10 @@
 
 <img width="800" src="https://github.com/Garens/vue-map/blob/master/src/assets/index.png">
 
+系统主界面
+
+<img width="800" src="https://github.com/Garens/vue-map/blob/master/src/assets/main.png">
+
 ## Build Setup
 
 ``` bash
