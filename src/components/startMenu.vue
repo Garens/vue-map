@@ -26,12 +26,14 @@
 </template>
 
 <script>
+import DataMonitor from "./DataMonitor/Index.vue";
 import test1 from "./sys1/Index.vue";
 import test2 from "./sys2/Index.vue";
 
 export default {
   props: [],
   components: {
+    DataMonitor,
     test1,
     test2
   },
@@ -39,7 +41,7 @@ export default {
     return {
       value1: 0,
       menuList: [
-        { id: 'system1', icon: "settings", title: "系统菜单1", color: "#cb5a5e", page: test1 },
+        { id: 'system1', icon: "settings", title: "数据监视", color: "#cb5a5e", page: DataMonitor },
         { id: 'system2', icon: "filing", title: "系统菜单2", color: "#30962d", page: test2 },
         { id: 'system3', icon: "clipboard", title: "系统菜单3", color: "#ca8319", page: test1 },
         { id: 'system4', icon: "pie-graph", title: "系统菜单4", color: "#ed3f14", page: test2 },

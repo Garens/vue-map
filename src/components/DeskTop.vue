@@ -59,6 +59,14 @@ export default {
       startMenuList: []
     };
   },
+  sockets: {
+    connect: function() {
+      console.log("socket connected");
+    },
+    opend: function(data) {
+      console.log(data)
+    }
+  },
   computed: {},
   mounted() {
     this.setDesktopTime();
@@ -70,6 +78,11 @@ export default {
       },
       false
     );
+
+    console.log(this);
+    this.$socket.on('opend', function(data) {
+      console.log(data)
+    })
   },
   methods: {
     //点击切换下面的小图标时候

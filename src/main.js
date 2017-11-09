@@ -6,6 +6,11 @@ import router from './router'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 import BaiduMap from 'vue-baidu-map'
+import axios from 'axios'
+import VueSocketio from 'vue-socket.io'
+import config from '../config/config'
+
+Vue.use(VueSocketio, config.restful.host || 'ws://127.0.0.1:3000');
 
 Vue.config.productionTip = false
 Vue.use(BaiduMap, {
@@ -13,8 +18,9 @@ Vue.use(BaiduMap, {
   ak: '6niQQjUGqGF9BlXEOibxA01kbgLGAORd'
 })
 
-import layer from 'vue-layer'
+import layer from 'vue-layer-map'
 Vue.prototype.$layer = layer(Vue);
+Vue.prototype.$http = axios;
 
 Vue.use(iView);
 

@@ -22,6 +22,7 @@ export default {
   },
   mounted() {
     // this.initMap();
+    console.log(this)
   },
   methods: {
     infoWindowClose() {
