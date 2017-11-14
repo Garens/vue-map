@@ -16,7 +16,8 @@
     "vue-baidu-map": "^0.18.4",
     "vue-layer-map": "^1.0.1",
     "vue-router": "^2.6.0",
-    "vue-socket.io": "^2.1.1-a"
+    "vue-socket.io": "^2.1.1-a",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

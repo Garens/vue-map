@@ -9,8 +9,9 @@ import BaiduMap from 'vue-baidu-map'
 import axios from 'axios'
 import VueSocketio from 'vue-socket.io'
 import config from '../config/config'
+import store from './store/index'
 
-Vue.use(VueSocketio, config.restful.host || 'ws://127.0.0.1:3000');
+Vue.use(VueSocketio, config.restful.host || 'ws://127.0.0.1:3000', store);
 
 Vue.config.productionTip = false
 Vue.use(BaiduMap, {
@@ -27,6 +28,7 @@ Vue.use(iView);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   template: '<App/>',
   components: { App }
