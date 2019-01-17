@@ -1,40 +1,34 @@
 <template>
-	<div class="main-cont" :style="mainContStyle">
-		<div class="main-map" id="main-map" @click="hideMenu" :style="mainMapStyle">
-			<map-view></map-view>
-		</div>
-		<div class="desktop">
-			<Row class="desktop-row">
-				<Col span="20" class="desktop-item" @click.native="hideMenu">
-					<div class="bottom-menu-item">
-						<div class="icon-menu" v-for="item in startMenuList" @click="changePageShow(item)">
-							<Icon :type="item.icon"></Icon>
-						</div>
-					</div>
-					<div class="copyright">
-						xxxx综合管理系统
-					</div>
-				</Col>
-				<Col span="2" class="desktop-time" @click.native="hideMenu">
-				<div>
-					{{sysTime.date}}
-				</div>
-				<div>
-					{{sysTime.time}}
-				</div>
-				</Col>
-				<Col span="2" class="start">
-				<Button type="text" @click="startMenu">
-					<Icon type="social-windows" size="16" color="#ffb848" class="start-icon"></Icon>
-					<span class="start-text">系统菜单</span>
-				</Button>
-				</Col>		
-			</Row>
-		</div>
-		<transition name="fade">
-			<startMenu v-if="isShowMenu"></startMenu>
-  		</transition>
-	</div>
+  <div class="main-cont" :style="mainContStyle">
+    <div class="main-map" id="main-map" @click="hideMenu" :style="mainMapStyle">
+      <map-view></map-view>
+    </div>
+    <div class="desktop">
+      <Row class="desktop-row">
+        <Col span="20" class="desktop-item" @click.native="hideMenu">
+          <div class="bottom-menu-item">
+            <div class="icon-menu" v-for="item in startMenuList" @click="changePageShow(item)">
+              <Icon :type="item.icon"></Icon>
+            </div>
+          </div>
+          <div class="copyright">xxxx综合管理系统</div>
+        </Col>
+        <Col span="2" class="desktop-time" @click.native="hideMenu">
+          <div>{{sysTime.date}}</div>
+          <div>{{sysTime.time}}</div>
+        </Col>
+        <Col span="2" class="start">
+          <Button type="text" @click="startMenu">
+            <Icon type="social-windows" size="16" color="#ffb848" class="start-icon"></Icon>
+            <span class="start-text">系统菜单</span>
+          </Button>
+        </Col>
+      </Row>
+    </div>
+    <transition name="fade">
+      <startMenu v-if="isShowMenu"></startMenu>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -64,7 +58,7 @@ export default {
       console.log("socket connected");
     },
     opend: function(data) {
-      console.log(data)
+      console.log(data);
     }
   },
   computed: {},
@@ -80,9 +74,9 @@ export default {
     );
 
     console.log(this);
-    this.$socket.on('opend', function(data) {
-      console.log(data)
-    })
+    this.$socket.on("opend", function(data) {
+      console.log(data);
+    });
   },
   methods: {
     //点击切换下面的小图标时候
@@ -126,37 +120,38 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="less">
+@import "~@/less/index.less";
+
 .desktop {
   width: 100%;
   height: 40px;
   display: block;
   position: absolute;
   bottom: 0px;
-  background: rgba(15, 43, 76, 0.95);
+  background: @backColor;
   z-index: 9999;
 }
 
 .desktop-row {
   height: 40px;
   line-height: 40px;
-  color: #fff;
+  color: @backTextColor;
   overflow: hidden;
 }
 
 .start {
-  background: #15499a;
+  background: @activeBackColor;
   transition: all 0.2s ease-in;
   width: 110px;
   z-index: 100;
-}
-
-.start:hover {
-  background: #0078d7;
-}
-.start:hover .start-icon {
-  transform: rotateY(330deg);
-  color: rgb(228, 147, 20);
+  &:hover {
+    background-color: @activeBackColorHover;
+    .start-icon {
+      transform: rotateY(330deg);
+      color: @textColorHover;
+    }
+  }
 }
 
 .start-icon {
@@ -165,7 +160,7 @@ export default {
 }
 
 .start-text {
-  color: #fff;
+  color: @backTextColor;
 }
 
 .desktop-item {
@@ -184,18 +179,18 @@ export default {
   bottom: 0px;
   right: 0px;
   text-align: center;
-  color: #f4f4f4;
+  color: @backTextColor;
   transition: all 0.2s ease;
-}
-.desktop-time:hover {
-  cursor: pointer;
-  background-color: rgba(16, 35, 58, 0.95);
+  &:hover {
+    cursor: pointer;
+    background-color: @backColorHover;
+  }
+  > div {
+    height: 16px;
+    line-height: 16px;
+  }
 }
 
-.desktop-time > div {
-  height: 16px;
-  line-height: 16px;
-}
 .copyright {
   float: right;
   padding: 0 20px;
@@ -225,21 +220,21 @@ export default {
   cursor: pointer;
   float: left;
   margin: 0 6px;
-  border-bottom: 2px solid #f9c838;
+  border-bottom: 2px solid @borderColor;
   transition: all 0.2s ease;
-}
-.icon-menu:hover {
-  width: 50px;
-  margin: 0 4px;
-  background-color: #395371;
-  border-bottom: 2px solid #f9c838;
-}
-.icon-menu:hover i {
-  font-size: 34px;
-}
-.icon-menu i {
-  font-size: 32px;
-  line-height: 40px;
-  color: #e6e6e6;
+  &:hover {
+    width: 50px;
+    margin: 0 4px;
+    background-color: @backColorHover;
+    border-bottom: 2px solid @borderColor;
+    i {
+      font-size: 34px;
+    }
+  }
+  i {
+    font-size: 32px;
+    line-height: 40px;
+    color: @backTextColor;
+  }
 }
 </style>
