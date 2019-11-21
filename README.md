@@ -16,6 +16,9 @@
 ```
 [RESTFUL API Server](https://github.com/Garens/vue-map-server)
 
+## Demo Url
+[demo url](http://node.webshao.com/)
+
 ## Build Setup
 
 ``` bash
@@ -33,3 +36,6 @@ npm run build --report
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## Author
+[Author Blog](https://webshao.com/)

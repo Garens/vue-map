@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.17.0",
     "iview": "^2.1.0",
+    "less": "^3.10.3",
     "vue": "^2.3.3",
     "vue-baidu-map": "^0.18.4",
     "vue-layer-map": "^1.0.1",
