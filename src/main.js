@@ -10,6 +10,18 @@ import axios from 'axios'
 import VueSocketio from 'vue-socket.io'
 import config from '../config/config'
 import store from './store/index'
+import VueAMap from 'vue-amap';
+Vue.use(VueAMap);
+
+// 初始化vue-amap
+VueAMap.initAMapApiLoader({
+  // 高德的key
+  key: '8b57785f1670a429e62d583a417955d3',
+  // 插件集合
+  plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
+  // 高德 sdk 版本，默认为 1.4.4
+  v: '1.4.4'
+});
 
 Vue.use(VueSocketio, config.restful.host || 'ws://127.0.0.1:3000', store);
 

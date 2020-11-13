@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import DeskTop from '@/components/DeskTop'
+import DeskTop from '@/views/DeskTop'
 
 Vue.use(Router)
 
