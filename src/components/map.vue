@@ -1,29 +1,33 @@
 <template>
-  <!-- <baidu-map class="bm-view" id="mymap" :center="{lng: 116.404, lat: 39.915}" :zoom="15" :scroll-wheel-zoom="true">
+  <div class="page">
+    <!-- <baidu-map class="bm-view" id="mymap" :center="{lng: 116.404, lat: 39.915}" :zoom="15" :scroll-wheel-zoom="true">
     <bm-marker :position="markerPoint" :dragging="true" animation="BMAP_ANIMATION_BOUNCE" @mouseout="infoWindowClose" @mouseover="infoWindowOpen" :icon="{url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif', size: {width: 300, height: 157}}">
       <bm-info-window :show="show" @close="infoWindowClose" @open="infoWindowOpen">我爱北京天安门</bm-info-window>
     </bm-marker>
-  </baidu-map>-->
+    </baidu-map>-->
 
-  <el-amap class="bm-view" vid="amapDemo" :zoom="zoom" :center="center" :mapStyle="mapStyle"></el-amap>
+    <el-amap class="bm-view" vid="amapDemo" :zoom="zoom" :center="center" :mapStyle="mapStyle"></el-amap>
 
-  <!-- <baidu-map class="bm-view" id="mymap" :scroll-wheel-zoom="true" ak="6niQQjUGqGF9BlXEOibxA01kbgLGAORd">
-  </baidu-map>-->
+    <!-- <baidu-map class="bm-view" id="mymap" :scroll-wheel-zoom="true" ak="6niQQjUGqGF9BlXEOibxA01kbgLGAORd">
+    </baidu-map>-->
+    <info></info>
+  </div>
 </template>
 <script>
 import { BaiduMap } from "vue-baidu-map";
+import info from "@/components/mapLayer/info";
 export default {
   data() {
     return {
-      zoom: 15,
+      zoom: 4,
       center: [116.397428, 39.90923],
-      mapStyle: 'amap://styles/grey',
+      mapStyle: 'amap://styles/916e03b38cfc09e90d195b3a566df71a',
       show: false,
       markerPoint: { lng: 116.404, lat: 39.915 }
     };
   },
   components: {
-    BaiduMap
+    BaiduMap, info
   },
   mounted() {
     // this.initMap();
