@@ -1,40 +1,40 @@
 <template>
-    <div>
-        <p>{{testData}}</p>
-        <Button type="success" @click="testFun">Success</Button>
-    </div>
+  <div>
+    <dataCenter></dataCenter>
+  </div>
 </template>
 <script>
+import dataCenter from "@/views/situation/index"
 export default {
   data() {
     return {
       // testData: 'this is defualt.'
     };
   },
-  components: {},
+  components: { dataCenter },
   computed: {
-    testData () {
+    testData() {
       return this.$store.state.realData.message;
     }
   },
   mounted() {
     // this.initMap();
     this.init();
+    console.log(123)
   },
   methods: {
-    init: function() {
+    init: function () {
       this.$http.get("/api/map", { params: { id: "testId" } }).then(ret => {
         console.log(ret);
       });
     },
-    testFun: function() {
-      this.$socket.emit('test', {name: 'test'});
+    testFun: function () {
+      this.$socket.emit('test', { name: 'test' });
       console.log(1111111, this.$store.state.realData.message)
     }
   }
 };
 </script>
 <style>
-
 </style>
 

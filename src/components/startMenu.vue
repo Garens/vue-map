@@ -33,59 +33,68 @@
 import DataMonitor from "./DataMonitor/Index.vue";
 import test1 from "./sys1/Index.vue";
 import test2 from "./sys2/Index.vue";
+import sys3 from "@/views/sys3/Index.vue";
 
 export default {
   props: [],
   components: {
     DataMonitor,
     test1,
-    test2
+    test2,
+    sys3
   },
   data() {
     return {
       value1: 0,
       menuList: [
-        { id: 'system1', icon: "settings", title: "数据监视", color: "#cb5a5e", page: DataMonitor },
-        { id: 'system2', icon: "filing", title: "系统菜单2", color: "#30962d", page: test2 },
-        { id: 'system3', icon: "clipboard", title: "系统菜单3", color: "#ca8319", page: test1 },
-        { id: 'system4', icon: "pie-graph", title: "系统菜单4", color: "#ed3f14", page: test2 },
+        { id: 'system1', icon: "ios-analytics", title: "数据监视", color: "#cb5a5e", page: DataMonitor },
+        { id: 'system2', icon: "md-apps", title: "系统菜单2", color: "#30962d", page: test2 },
+        { id: 'system3', icon: "md-aperture", title: "系统菜单3", color: "#ca8319", page: test1 },
+        { id: 'system4', icon: "ios-basket-outline", title: "系统菜单4", color: "#ed3f14", page: test2 },
         {
-          icon: "social-buffer",
+          id: 'system5',
+          icon: "md-analytics",
           title: "系统菜单5",
           color: "#151c2d",
-          page: test1
+          page: DataMonitor
         },
         {
-          icon: "android-contacts",
+          id: 'system6',
+          icon: "ios-briefcase-outline",
           title: "系统菜单6",
           color: "#2b85e4",
-          page: test2
+          page: sys3
         },
         {
-          icon: "android-share-alt",
+          id: 'system7',
+          icon: "md-clock",
           title: "系统菜单7",
           color: "#30962d",
           page: test1
         },
         {
-          icon: "android-car",
+          id: 'system8',
+          icon: "ios-cloudy-outline",
           title: "系统菜单8",
           color: "#ca8319",
           page: test2
         },
         {
-          icon: "android-map",
+          id: 'system9',
+          icon: "md-cog",
           title: "系统菜单9",
           color: "#ed3f14",
           page: test1
         },
         {
-          icon: "android-options",
+          id: 'system10',
+          icon: "md-color-palette",
           title: "系统菜单10",
           color: "#151c2d",
           page: test2
         },
         {
+          id: 'system11',
           icon: "ios-speedometer",
           title: "系统菜单11",
           color: "#2b85e4",
@@ -123,6 +132,7 @@ export default {
           sysId = _item.sysId;
         }
       }
+      console.log(list, sysId, item)
       if (!flag) {
         this.creatLayer(item);
       } else {

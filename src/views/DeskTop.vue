@@ -24,10 +24,10 @@
           <div>{{sysTime.time}}</div>
         </Col>
         <Col span="2" class="start">
-          <Button type="text" @click="startMenu">
-            <Icon type="social-windows" size="16" color="#ffb848" class="start-icon"></Icon>
+          <div type="text" @click="startMenu" class="start-btn">
+            <Icon type="logo-windows" size="16" color="#ffb848" class="start-icon"></Icon>
             <span class="start-text">系统菜单</span>
-          </Button>
+          </div>
         </Col>
       </Row>
     </div>
@@ -156,12 +156,19 @@ export default {
   transition: all 0.2s ease-in;
   width: 110px;
   z-index: 100;
+
   &:hover {
     background-color: @activeBackColorHover;
+    cursor: pointer;
     .start-icon {
       transform: rotateY(330deg);
       color: @textColorHover;
     }
+  }
+
+  &-btn {
+    width: 100%;
+    height: 100%;
   }
 }
 

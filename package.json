@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "axios": "^0.17.0",
+    "echarts": "^4.9.0",
     "iview": "^2.1.0",
     "less": "^3.10.3",
     "node-sass": "^4.0.0",
+    "view-design": "^4.4.0",
     "vue": "^2.3.3",
     "vue-amap": "^0.5.10",
     "vue-baidu-map": "^0.18.4",
