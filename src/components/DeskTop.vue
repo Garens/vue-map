@@ -7,11 +7,17 @@
       <Row class="desktop-row">
         <Col span="20" class="desktop-item" @click.native="hideMenu">
           <div class="bottom-menu-item">
-            <div class="icon-menu" v-for="item in startMenuList" @click="changePageShow(item)">
+            <div
+              class="icon-menu"
+              :class="sysId == item.sysId?'active' : ''"
+              v-for="(item, index) in startMenuList"
+              :key="index"
+              @click="changePageShow(item)"
+            >
               <Icon :type="item.icon"></Icon>
             </div>
           </div>
-          <div class="copyright">xxxx综合管理系统</div>
+          <div class="copyright">xxxx1综合管理系统</div>
         </Col>
         <Col span="2" class="desktop-time" @click.native="hideMenu">
           <div>{{sysTime.date}}</div>
@@ -54,10 +60,10 @@ export default {
     };
   },
   sockets: {
-    connect: function() {
+    connect: function () {
       console.log("socket connected");
     },
-    opend: function(data) {
+    opend: function (data) {
       console.log(data);
     }
   },
@@ -73,19 +79,18 @@ export default {
       false
     );
 
-    console.log(this);
-    this.$socket.on("opend", function(data) {
+    this.$socket.on("opend", function (data) {
       console.log(data);
     });
   },
   methods: {
     //点击切换下面的小图标时候
-    changePageShow: function(item) {
+    changePageShow: function (item) {
       let sysId = item.sysId;
       this.$layer.taggel(sysId);
     },
     //设置地图层div的宽度高度
-    setWindowSize: function() {
+    setWindowSize: function () {
       this.mainContStyle = {
         width: document.documentElement.clientWidth + "px",
         height: document.documentElement.clientHeight + "px"
@@ -96,7 +101,7 @@ export default {
       };
     },
     //点击其他地方，隐藏开始菜单
-    hideMenu: function() {
+    hideMenu: function () {
       this.isShowMenu = false;
     },
     //设置右下角时间
@@ -112,7 +117,7 @@ export default {
       }, 1000);
     },
     //开始菜单点击事件
-    startMenu: function(e) {
+    startMenu: function (e) {
       this.isShowMenu = !this.isShowMenu;
     }
   }
@@ -121,7 +126,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-@import "~@/less/index.less";
+@import '~@/less/index.less';
 
 .desktop {
   width: 100%;

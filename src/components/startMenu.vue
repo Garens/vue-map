@@ -2,25 +2,29 @@
   <div id="startMenu">
     <div class="menu-top">
       <Icon type="person" class="user-icon"></Icon>
-      <span class="user-name">
-        username
-      </span>
+      <span class="user-name">username</span>
     </div>
     <div class="menu-cont">
       <Carousel v-model="value1" :trigger="'hover'" :arrow="'never'" class="menu-cont-page">
-        <CarouselItem v-for="num in menuList" class="menu-cont-page-item">
-            <div v-for="item in num" class="menu-item" :style="item.color | formatColor" @click="startMenuItem(item)">
-              <Icon :type="item.icon"></Icon>
-              <div class="menu-item-text">
-                <span>{{item.title}}</span>
-              </div>
-            </div>            
+        <CarouselItem v-for="(num, index) in menuList" :key="index" class="menu-cont-page-item">
+          <div
+            v-for="(item, index) in num"
+            :key="index"
+            class="menu-item"
+            :style="item.color | formatColor"
+            @click="startMenuItem(item)"
+          >
+            <Icon :type="item.icon"></Icon>
+            <div class="menu-item-text">
+              <span>{{item.title}}</span>
+            </div>
+          </div>
         </CarouselItem>
-    </Carousel>
+      </Carousel>
     </div>
     <div class="menu-bottom">
       <Button type="info">修改密码</Button>
-    <Button type="error">退出系统</Button>
+      <Button type="error">退出系统</Button>
     </div>
   </div>
 </template>
@@ -49,49 +53,49 @@ export default {
           icon: "social-buffer",
           title: "系统菜单5",
           color: "#151c2d",
-          page: "test1"
+          page: test1
         },
         {
           icon: "android-contacts",
           title: "系统菜单6",
           color: "#2b85e4",
-          page: "test1"
+          page: test2
         },
         {
           icon: "android-share-alt",
           title: "系统菜单7",
           color: "#30962d",
-          page: "test1"
+          page: test1
         },
         {
           icon: "android-car",
           title: "系统菜单8",
           color: "#ca8319",
-          page: "test1"
+          page: test2
         },
         {
           icon: "android-map",
           title: "系统菜单9",
           color: "#ed3f14",
-          page: "test1"
+          page: test1
         },
         {
           icon: "android-options",
           title: "系统菜单10",
           color: "#151c2d",
-          page: "test1"
+          page: test2
         },
         {
           icon: "ios-speedometer",
           title: "系统菜单11",
           color: "#2b85e4",
-          page: "test1"
+          page: test1
         }
       ]
     };
   },
   filters: {
-    formatColor: function(color) {
+    formatColor: function (color) {
       return "background-color:" + color;
     }
   },
@@ -100,7 +104,7 @@ export default {
   },
   methods: {
     //格式化菜单数据,以6来均分
-    menuCalculate: function() {
+    menuCalculate: function () {
       var list = this.menuList;
       var arr = [];
       for (var i = 0; i < list.length; i += 6) {
@@ -109,26 +113,27 @@ export default {
       this.menuList = arr;
     },
     //点击一个菜单项事件
-    startMenuItem: function(item) {
+    startMenuItem: function (item) {
       var flag = false;
       var sysId = '';
       var list = this.$parent.startMenuList;
-      for(var _item of list) {
-        if(_item.id == item.id) {
+      for (var _item of list) {
+        if (_item.id == item.id) {
           flag = true;
           sysId = _item.sysId;
         }
       }
-      if(!flag) {
+      if (!flag) {
         this.creatLayer(item);
       } else {
         this.$layer.setTop(sysId);
+        this.$emit('changeLayer', sysId)
       }
-      
+
       this.$parent.isShowMenu = false;
     },
     //创建一个弹出层
-    creatLayer: function(item) {
+    creatLayer: function (item) {
       var _this = this;
       var page = item.page;
       var width = document.getElementById("main-map").offsetWidth + "px";
@@ -146,16 +151,17 @@ export default {
         btntool: true,        //是否显示右上角最小化和关闭图标
         move: false,          //是否允许拖动
         fullScreen: true,   //全屏显示
-        close: function(id) {
+        close: function (id) {
           var list = _this.$parent.startMenuList;
-          for(var i in list) {
-            if(list[i].sysId == id) {
+          for (var i in list) {
+            if (list[i].sysId == id) {
               _this.$parent.startMenuList.splice(i, 1);
             }
           }
         }
       });
-      this.$parent.startMenuList.push({id: item.id, sysId: layer, icon: item.icon, color: item.color});
+      this.$parent.startMenuList.push({ id: item.id, sysId: layer, icon: item.icon, color: item.color });
+      this.$emit('changeLayer', layer)
     }
   }
 };

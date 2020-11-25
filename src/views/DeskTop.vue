@@ -7,11 +7,17 @@
       <Row class="desktop-row">
         <Col span="20" class="desktop-item" @click.native="hideMenu">
           <div class="bottom-menu-item">
-            <div class="icon-menu" v-for="item in startMenuList" @click="changePageShow(item)">
+            <div
+              class="icon-menu"
+              :class="sysId == item.sysId?'active' : ''"
+              v-for="(item, index) in startMenuList"
+              :key="index"
+              @click="changePageShow(item)"
+            >
               <Icon :type="item.icon"></Icon>
             </div>
           </div>
-          <div class="copyright">xxxx综合管理系统</div>
+          <div class="copyright">xxxx1综合管理系统</div>
         </Col>
         <Col span="2" class="desktop-time" @click.native="hideMenu">
           <div>{{sysTime.date}}</div>
@@ -26,7 +32,7 @@
       </Row>
     </div>
     <transition name="fade">
-      <startMenu v-if="isShowMenu"></startMenu>
+      <startMenu v-if="isShowMenu" @changeLayer="changeLayer"></startMenu>
     </transition>
   </div>
 </template>
@@ -43,6 +49,7 @@ export default {
   },
   data() {
     return {
+      sysId: "",
       isShowMenu: false,
       sysTime: {
         // date: new Date().toLocaleDateString(),
@@ -79,9 +86,13 @@ export default {
     });
   },
   methods: {
+    changeLayer(id) {
+      this.sysId = id
+    },
     //点击切换下面的小图标时候
     changePageShow: function (item) {
       let sysId = item.sysId;
+      this.sysId = sysId;
       this.$layer.taggel(sysId);
     },
     //设置地图层div的宽度高度
@@ -197,6 +208,9 @@ export default {
 }
 .bottom-menu-item {
   min-width: 200px;
+  .active {
+    background-color: @activeBackColor;
+  }
 }
 .main-map {
   display: block;
