@@ -9,19 +9,22 @@
 <img width="800" src="https://github.com/Garens/vue-map/blob/master/src/assets/main.png">
 
 ## RESTFUL API
-``` bash
+
+```bash
 # support HTTP and socket.io
 # host: 127.0.0.1
 # port: 8360
 ```
+
 [RESTFUL API Server](https://github.com/Garens/vue-map-server)
 
 ## Demo Url
-[demo url](http://node.webshao.com/)
+
+[demo url](http://map.webshao.com/)
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
@@ -38,4 +41,5 @@ npm run build --report
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 ## Author
+
 [Author Blog](https://webshao.com/)
