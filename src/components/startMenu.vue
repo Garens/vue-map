@@ -1,7 +1,7 @@
 <template>
   <div id="startMenu">
     <div class="menu-top">
-      <Icon type="person" class="user-icon"></Icon>
+      <Icon type="md-person" class="user-icon"></Icon>
       <span class="user-name">username</span>
     </div>
     <div class="menu-cont">

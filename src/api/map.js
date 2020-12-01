@@ -8,3 +8,11 @@ export function getInfoList() {
     method: 'post'
   })
 }
+
+
+export function getAllOrgBranchList() {
+  return request({
+    url: '/map/getAllOrgBranchList',
+    method: 'post'
+  })
+}

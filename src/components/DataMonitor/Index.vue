@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="data-monitor">
     <dataCenter></dataCenter>
   </div>
 </template>
@@ -35,6 +35,11 @@ export default {
   }
 };
 </script>
-<style>
+<style scope>
+.data-monitor {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 </style>
 

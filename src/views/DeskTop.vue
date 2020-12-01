@@ -40,6 +40,7 @@
 <script>
 import mapView from "@/components/map.vue";
 import startMenu from "@/components/startMenu.vue";
+import { ihavesee } from "@/api/stream"
 
 export default {
   name: "hello",
@@ -84,8 +85,13 @@ export default {
     this.$socket.on("opend", function (data) {
       console.log(111112, data);
     });
+    this.doASee()
   },
   methods: {
+    //记录页面访问量，刷新次数
+    async doASee() {
+      let res = await ihavesee();
+    },
     changeLayer(id) {
       this.sysId = id
     },
