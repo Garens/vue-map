@@ -20,7 +20,7 @@
 
 ## Demo Url
 
-[demo url](http://map.webshao.com/)
+[demo url](https://webshao.com/layer)
 
 ## Build Setup
 
